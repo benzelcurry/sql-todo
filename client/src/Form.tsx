@@ -1,6 +1,17 @@
+import { useState } from 'react'
+
 import './Form.css'
 
+import { Todo } from './types'
+
 function Form() {
+  const [todo, setTodo] = useState<Todo>({
+    task: '',
+    importance: 1,
+    dueDate: new Date(),
+    description: ''
+  })
+
   return (
     <div>
       <form>
