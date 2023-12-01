@@ -2,9 +2,12 @@ import './Nav.css'
 
 function Nav() {
   return (
-    <div>
+    <div className='navbar'>
       <button>TODO</button>
-      <button>Finished</button>
+      <div className='right-nav'>
+        <button>Finished</button>
+        <button>New Todo</button>
+      </div>
     </div>
   )
 }

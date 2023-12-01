@@ -1,0 +1,18 @@
+.navbar {
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.right-nav {
+  display: flex;
+}
+
+.navbar > button, .right-nav > button {
+  cursor: pointer;
+  min-width: 100px;
+}
+
+.right-btn {
+  justify-self: flex-end;
+}
