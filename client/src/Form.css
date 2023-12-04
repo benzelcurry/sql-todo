@@ -1,0 +1,20 @@
+.todo-form {
+  margin: auto;
+  width: 500px;
+  border: solid 2px black;
+  border-radius: 5px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 100px auto;
+  gap: 10px;
+}
+
+.form-heading {
+  grid-column-start: span 2;
+  justify-self: center;
+}
+
+.todo-form > input,
+.todo-form > textarea {
+  font-family: inherit;
+}
