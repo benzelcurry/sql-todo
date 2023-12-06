@@ -9,6 +9,7 @@ function Form() {
     task: '',
     importance: 1,
     dueDate: new Date(),
+    created: new Date(),
     description: ''
   })
 
