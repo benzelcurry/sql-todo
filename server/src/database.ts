@@ -1,4 +1,4 @@
-import mysql from 'mysql2'
+import mysql, { ResultSetHeader } from 'mysql2'
 require('dotenv').config()
 
 import { ITodo } from './types'
@@ -16,10 +16,25 @@ async function getTodo(id: number) {
   FROM todo
   WHERE id = ?
   `, [id])
-  return rows[0];
+  return rows[0]
 }
 
-(async () => {
-  const todo = await getTodo(1)
-  console.log(todo)
-})();
+// (async () => {
+//   const todo = await getTodo(3)
+//   console.log(todo)
+// })()
+
+async function createTodo(title: string, importance: number) {
+  const [result] = await pool.query<ResultSetHeader>(`
+  INSERT INTO todo (title, importance)
+  VALUES (?, ?)
+  `, [title, importance])
+
+  const id = result.insertId
+  return getTodo(id)
+}
+
+// (async () => {
+//   const todo = await createTodo('Task 5', 3)
+//   console.log(todo)
+// })()
