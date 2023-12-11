@@ -1,6 +1,4 @@
-import { RowDataPacket } from "mysql2";
-
-export interface ITodo extends RowDataPacket {
+export interface ITodo {
   id: number
   title: string
   importance: number
