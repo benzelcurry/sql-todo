@@ -1,6 +1,8 @@
 import express, { Express, Request, Response } from 'express'
 import cors from 'cors'
 
+import todo from './routes/todo.routes'
+
 const app: Express = express()
 const port = 3000; // MAKE THIS A .ENV VARIABLE
 
@@ -13,6 +15,8 @@ const options: cors.CorsOptions = {
 
 app.use(cors(options))
 app.use(express.json())
+
+app.use('/todo', todo)
 
 app.get('/', (req: Request, res: Response) => {
   res.send('Hello, this is Express + TypeScript')
