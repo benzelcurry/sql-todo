@@ -13,6 +13,8 @@ db.any('SELECT * FROM todo;')
     console.log(error)
   })
 
+export default db
+
 // db
 //   .any(`
 //     INSERT INTO todo (title, importance, description)
