@@ -35,16 +35,18 @@ export const new_todo = [
     .isLength({ max: 1000 })
     .optional({ nullable: true }),
   async (req: Request, res: Response, next: NextFunction) =>  {
+    const errors = validationResult(req)
     db
       .any(`
         INSERT INTO todo (title, importance, description)
-        VALUES (${req.body.title}, ${req.body.importance}, ${req.body.description});
+        VALUES ('${req.body.title}', ${req.body.importance}, '${req.body.description ? req.body.description : null}');
       `)
       .then((data: ITodo[]) => {
-        res.status(200).json(data)
+        // TODO: Return the todo created? Might not be necessary.
+        res.status(200).json('Task successfully created')
       })
-      .catch((err: Error) => {
-        res.status(400).json(err)
+      .catch(() => {
+        res.status(400).json({ errors: errors.array() })
       })
   }
 ]
