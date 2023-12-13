@@ -2,10 +2,10 @@ import { useState } from 'react'
 
 import './Form.css'
 
-import { Todo } from './types'
+import { ITodo } from './types'
 
 function Form() {
-  const [todo, setTodo] = useState<Todo>({
+  const [todo, setTodo] = useState<ITodo>({
     task: '',
     importance: 1,
     dueDate: new Date(),

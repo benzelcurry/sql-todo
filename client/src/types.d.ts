@@ -1,4 +1,4 @@
-export type Todo = {
+export type ITodo = {
   task: string;
   importance: number;
   dueDate: Date;
