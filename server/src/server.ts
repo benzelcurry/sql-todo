@@ -10,7 +10,7 @@ const port = 3000; // MAKE THIS A .ENV VARIABLE
 const allowedOrigins = ['http://localhost:3000']
 
 const options: cors.CorsOptions = {
-  origin: allowedOrigins
+  origin: '*'
 }
 
 app.use(cors(options))
