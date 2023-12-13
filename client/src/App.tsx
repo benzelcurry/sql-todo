@@ -11,6 +11,7 @@ import Todo from './Todo'
 
 function App() {
   const [todos, setTodos] = useState<ITodo[]>([])
+  const [displayForm, setDisplayForm] = useState(false)
 
   useEffect(() => {
     axios.get('http://localhost:3000/todo')
@@ -21,10 +22,11 @@ function App() {
 
   return (
     <>
-      <Nav />
-      <Form />
+      <Nav displayForm={displayForm} toggleFx={setDisplayForm} />
+      { displayForm && <Form /> }
       {
-        todos ?
+        todos
+        ?
         todos.map(todo => 
           <Todo key={todo.id} id={todo.id} title={todo.title} importance={todo.importance}
            created={todo.created} due_date={todo.due_date} description={todo.description} />

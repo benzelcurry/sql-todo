@@ -1,5 +1,5 @@
 export type ITodo = {
-  id: number;
+  id?: number;
   title: string;
   importance: number;
   due_date: Date;
