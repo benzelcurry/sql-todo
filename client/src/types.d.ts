@@ -1,7 +1,8 @@
 export type ITodo = {
-  task: string;
+  id: number;
+  title: string;
   importance: number;
-  dueDate: Date;
+  due_date: Date;
   created: Date;
   description: string;
 }

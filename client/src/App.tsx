@@ -7,6 +7,7 @@ import { ITodo } from './types'
 
 import Nav from './Nav'
 import Form from './Form'
+import Todo from './Todo'
 
 function App() {
   const [todos, setTodos] = useState<ITodo[]>([])
@@ -22,6 +23,15 @@ function App() {
     <>
       <Nav />
       <Form />
+      {
+        todos ?
+        todos.map(todo => 
+          <Todo key={todo.id} id={todo.id} title={todo.title} importance={todo.importance}
+           created={todo.created} due_date={todo.due_date} description={todo.description} />
+        )
+        :
+        <p>Loading...</p>
+      }
     </>
   )
 }
