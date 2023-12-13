@@ -1,4 +1,7 @@
-import { useState, useEffect } from 'react'
+// Form component that allows user to submit new todos 
+
+import { useState } from 'react'
+import axios from 'axios'
 
 import './Form.css'
 
@@ -13,9 +16,17 @@ function Form() {
     description: ''
   })
 
-  useEffect(() => {
-    console.log(todo)
-  }, [todo])
+  // Submits todo data to the server to be stored in DB
+  // TODO: Do something meaningful with the then/catch statements
+  const handleSubmit = () => {
+    axios.post('http://localhost:3000/todo', todo)
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => {
+        console.log(err)
+      })
+  }
 
   return (
     <form className='todo-form'>
@@ -25,7 +36,7 @@ function Form() {
         onChange={(e) => setTodo({ ...todo, title: e.target.value})}  
       />
       <label htmlFor="importance">Importance</label>
-      <input type="number" name="importance" id="importance" required 
+      <input type="number" name="importance" id="importance" min="0" max="10" required 
         onChange={(e) => setTodo({ ...todo, importance: parseInt(e.target.value) })} 
       />
       <label htmlFor="due_date">Due Date</label>
@@ -36,7 +47,7 @@ function Form() {
       <textarea name="description" id="description" 
         onChange={(e) => setTodo({ ...todo, description: e.target.value})} 
       />
-      <button>Submit</button>
+      <button onClick={handleSubmit}>Submit</button>
     </form>
   )
 }
