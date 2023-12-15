@@ -53,12 +53,13 @@ export const new_todo = [
 
 // Deletes a todo of the specified ID on DELETE
 export const delete_todo: RequestHandler = async (req, res, next) => {
-  db
-    .any(`DELETE FROM todo WHERE id = ${req.body.id};`)
-    .then((data: ITodo[]) => {
-      res.status(200).json(data)
-    })
-    .catch((err: Error) => {
-      res.status(500).json(err)
-    })
+  // db
+  //   .any(`DELETE FROM todo WHERE id = ${req.body.id};`)
+  //   .then((data: ITodo[]) => {
+  //     res.status(200).json(data)
+  //   })
+  //   .catch((err: Error) => {
+  //     res.status(500).json(err)
+  //   })
+  console.log(`DELETE FROM todo WHERE id = ${req.query.id};`)
 }

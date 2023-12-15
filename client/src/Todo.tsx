@@ -1,8 +1,22 @@
+// Creates Todo cards to be displayed in App
+
+import axios from 'axios' 
+
 import './Todo.css'
 
 import { ITodo } from './types'
 
 function Todo(props: ITodo) {
+  const handleDelete = (id: number) => {
+    axios.delete('http://localhost:3000/todo', { params: { id: id } })
+    .then(res => {
+      console.log(res)
+    })
+    .catch(err => {
+      console.log(err)
+    })
+  }
+
   return (
     <div>
       <h3>{props.title}</h3>
@@ -10,7 +24,7 @@ function Todo(props: ITodo) {
       <p>Importance: {props.importance}</p>
       <p>{props.description}</p>
       <p>Due: {props.due_date.toString()}</p>
-      <button>Delete Todo</button>
+      <button onClick={() => handleDelete(props.id!)}>Delete Todo</button>
     </div>
   )
 }

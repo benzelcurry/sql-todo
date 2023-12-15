@@ -14,6 +14,6 @@ router.get('/', todo_list)
 router.post('/', new_todo)
 
 // Deletes a todo of specified ID from table
-router.post('/', delete_todo)
+router.delete('/', delete_todo)
 
 export default router
