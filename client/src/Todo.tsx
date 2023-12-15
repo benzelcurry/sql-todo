@@ -9,9 +9,10 @@ import { ITodo } from './types'
 function Todo(props: ITodo) {
   const handleDelete = (id: number) => {
     axios.delete('http://localhost:3000/todo', { params: { id: id } })
-    .then(res => {
-      console.log(res)
+    .then(() => {
+      location.reload()
     })
+    // Refactor to provide a more meaningful error output
     .catch(err => {
       console.log(err)
     })
