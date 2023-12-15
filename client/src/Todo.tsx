@@ -10,6 +10,7 @@ function Todo(props: ITodo) {
       <p>Importance: {props.importance}</p>
       <p>{props.description}</p>
       <p>Due: {props.due_date.toString()}</p>
+      <button>Delete Todo</button>
     </div>
   )
 }
