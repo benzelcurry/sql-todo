@@ -18,6 +18,11 @@ function Todo(props: ITodo) {
     })
   }
 
+  const handleUpdate = (id: number) => {
+    // Update logic will go here once a corresponding method is built on the server
+    // Will need to add a state variable and update text lines to be fields that then submit to the server
+  }
+
   return (
     <div>
       <h3>{props.title}</h3>
@@ -26,6 +31,7 @@ function Todo(props: ITodo) {
       <p>{props.description}</p>
       <p>Due: {props.due_date.toString()}</p>
       <button onClick={() => handleDelete(props.id!)}>Delete Todo</button>
+      <button onClick={() => handleUpdate(props.id!)}>Update Todo</button>
     </div>
   )
 }
