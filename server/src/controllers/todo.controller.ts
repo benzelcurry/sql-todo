@@ -18,6 +18,7 @@ export const todo_list: RequestHandler = async (req, res, next) => {
     })
 }
 
+
 // Add a new todo on POST
 // TODO: Once users are implemented, make this request a user ID (will need to rework the table in DB -- look up how to use relational keys in Postgres?)
 // TODO: Allow to account for dates
@@ -39,7 +40,7 @@ export const new_todo = [
     db
       .any(`
         INSERT INTO todo (title, importance, description)
-        VALUES ('${req.body.title}', ${req.body.importance}, '${req.body.description ? req.body.description : null}');
+          VALUES ('${req.body.title}', ${req.body.importance}, '${req.body.description ? req.body.description : null}');
       `)
       .then((data: ITodo[]) => {
         // TODO: Return the todo created? Might not be necessary.
@@ -50,6 +51,42 @@ export const new_todo = [
       })
   }
 ]
+
+
+// Updates a todo of the specified ID on PATCH
+// TODO: Account for dates
+// TODO: Once dates are accounted for, change the route to PUT?
+export const update_todo = [
+  // Validate and sanitize fields (title, importance, description)
+  body('title')
+    .trim()
+    .isLength({ min: 1, max: 255 })
+    .withMessage('Todo title must be between 1 and 255 characters'),
+  body('importance')
+    .isInt({ min: 1, max: 10 })
+    .withMessage('Importance must be an integer of value ranging from 1 to 10'),
+  body('description')
+    .trim()
+    .isLength({ max: 1000 })
+    .optional({ nullable: true }),
+  async (req: Request, res: Response, next: NextFunction) => {
+    const errors = validationResult(req)
+
+    db
+    .any(`
+      UPDATE todo SET title = ${req.body.title}, importance = ${req.body.importance}, description = ${req.body.description}
+        WHERE id = ${req.body.id};
+    `)
+    .then((data: ITodo[]) => {
+      // TODO: Return the todo updated? Might not be necessary.
+      res.status(200).json('Task successfully updated')
+    })
+    .catch(() => {
+      res.status(400).json({ errors: errors.array() })
+    })
+  }
+]
+
 
 // Deletes a todo of the specified ID on DELETE
 export const delete_todo: RequestHandler = async (req, res, next) => {
