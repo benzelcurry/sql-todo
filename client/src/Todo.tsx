@@ -43,14 +43,25 @@ function Todo(props: ITodo) {
         </>
         :
         <>
-          <form>
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-            <button>Submit Changes</button>
-            <button onClick={() => setActiveUpdate(!activeUpdate)}>Cancel Changes</button>
+          <form className='update-form'>
+            <label htmlFor="title">Title</label>
+            <input type="text" name="title" id="title" required
+              onChange={(e) => setTodo({ ...todo, title: e.target.value})}  
+            />
+            <label htmlFor="importance">Importance</label>
+            <input type="number" name="importance" id="importance" min="0" max="10" required 
+              onChange={(e) => setTodo({ ...todo, importance: parseInt(e.target.value) })} 
+            />
+            <label htmlFor="due_date">Due Date</label>
+            <input type="date" name="due_date" id="due_date" 
+              onChange={(e) => setTodo({ ...todo, due_date: new Date(e.target.value)})} 
+            />
+            <label htmlFor="description">Description</label>
+            <textarea name="description" id="description" 
+              onChange={(e) => setTodo({ ...todo, description: e.target.value})} 
+            />
+            <button className='submit-btn'>Submit Changes</button>
+            <button className='cancel-btn' onClick={() => setActiveUpdate(!activeUpdate)}>Cancel Changes</button>
           </form>
         </>
       }

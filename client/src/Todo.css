@@ -1,0 +1,17 @@
+.update-form {
+  width: 500px;
+  border: solid 2px black;
+  border-radius: 5px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: 100px auto;
+  gap: 10px;
+}
+
+.submit-btn {
+  background-color: rgb(126, 194, 126);
+}
+
+.cancel-btn {
+  background-color: rgb(236, 79, 79);
+}
